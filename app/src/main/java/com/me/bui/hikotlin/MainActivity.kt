@@ -1,14 +1,23 @@
 package com.me.bui.hikotlin
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.LinearLayout
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        val TAG: String? = MainActivity::class.java.simpleName
+    }
 
-    val animals: ArrayList<String> = ArrayList();
+    private val animalList: ArrayList<String> = ArrayList()
+    private val callback: AnimalClickCallback? = object : AnimalClickCallback {
+        override fun onClick(animal: String) {
+            Log.d(TAG, "onClick here " + animal)
+        }
+    }
+    private val animalAdapter: AnimalAdapter = AnimalAdapter(callback as AnimalClickCallback)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,42 +25,43 @@ class MainActivity : AppCompatActivity() {
 
         initData()
         rc_list.layoutManager = LinearLayoutManager(this)
-        rc_list.adapter = AnimalAdapter(animals, this)
+        rc_list.adapter = animalAdapter
+        animalAdapter.setAnimalList(animalList)
 
     }
 
     fun initData() {
-        animals.add("dog")
-        animals.add("cat")
-        animals.add("owl")
-        animals.add("cheetah")
-        animals.add("raccoon")
-        animals.add("bird")
-        animals.add("snake")
-        animals.add("lizard")
-        animals.add("hamster")
-        animals.add("bear")
-        animals.add("lion")
-        animals.add("tiger")
-        animals.add("horse")
-        animals.add("frog")
-        animals.add("fish")
-        animals.add("shark")
-        animals.add("turtle")
-        animals.add("elephant")
-        animals.add("cow")
-        animals.add("beaver")
-        animals.add("bison")
-        animals.add("porcupine")
-        animals.add("rat")
-        animals.add("mouse")
-        animals.add("goose")
-        animals.add("deer")
-        animals.add("fox")
-        animals.add("moose")
-        animals.add("buffalo")
-        animals.add("monkey")
-        animals.add("penguin")
-        animals.add("parrot")
+        animalList.add("dog")
+        animalList.add("cat")
+        animalList.add("owl")
+        animalList.add("cheetah")
+        animalList.add("raccoon")
+        animalList.add("bird")
+        animalList.add("snake")
+        animalList.add("lizard")
+        animalList.add("hamster")
+        animalList.add("bear")
+        animalList.add("lion")
+        animalList.add("tiger")
+        animalList.add("horse")
+        animalList.add("frog")
+        animalList.add("fish")
+        animalList.add("shark")
+        animalList.add("turtle")
+        animalList.add("elephant")
+        animalList.add("cow")
+        animalList.add("beaver")
+        animalList.add("bison")
+        animalList.add("porcupine")
+        animalList.add("rat")
+        animalList.add("mouse")
+        animalList.add("goose")
+        animalList.add("deer")
+        animalList.add("fox")
+        animalList.add("moose")
+        animalList.add("buffalo")
+        animalList.add("monkey")
+        animalList.add("penguin")
+        animalList.add("parrot")
     }
 }
